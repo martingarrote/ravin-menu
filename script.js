@@ -14,19 +14,23 @@ function montarHtml(dados) {
     const products = document.querySelector(".products")
     let textHtml = ""
 
-    for (itemMenu of dados) {
+    for (item of dados) {
         let produto = `
-        <div class="product ${itemMenu}" data-category="${itemMenu.categoria}">
-              <img src="${itemMenu.imagem}">
-              <h3>${itemMenu.nome}</h3>
-              <p>${itemMenu.descricao}</p>
-              <input type="number" name="qtd-${itemMenu.id}" min="0">
-              <p><a class="btn" href="#" onclick='fazerPedido(${JSON.stringify(itemMenu)})'>Fazer pedido</a></p>
+        <div class="product itens-menu}" data-category="${item.categoria}">
+              <img src="${item.imagem}">
+              <h3>${item.nome}</h3>
+              <p>${item.descricao}</p>
+              <input type="number" name="qtd-${item.id}" min="0">
+              <p><a class="btn" href="#" onclick='fazerPedido(${JSON.stringify(item)})'>Fazer pedido</a></p>
           </div>
         `
         textHtml += produto
     }
     products.innerHTML = textHtml
+}
+
+function selecionar(elemento) {
+    elemento.classList.add("selected")
 }
 
 function fazerPedido(item) {
@@ -54,4 +58,41 @@ function salvarHistoricoPedidos(pedido) {
     }
     historicoPedidos.itens.push(pedido);
     localStorage.setItem("orderHistory", JSON.stringify(historicoPedidos));
+}
+
+
+const itensMenu = document.querySelectorAll(".item-menu")
+itensMenu.forEach(item => {
+    item.addEventListener("click", function(event) {
+        removerSelecionados()
+        event.target.classList.add("selected")
+    })
+})
+
+function filtrarItensMenu(elemento, categoria) {
+    removerSelecionado(elemento)
+    const products = document.querySelectorAll(".product")
+    if (elemento.id === "all-products") {
+        for (item of products) {
+            item.classList.remove("hidden")
+        }
+    } else {
+        for (item of products) {
+            if (item.getAttribute("data-category") === categoria) {
+                item.classList.remove("hidden")
+            } else {
+                item.classList.add("hidden")
+            }
+        }
+    }
+}
+
+function removerSelecionado(item) {
+    item.classList.remove("selected")
+}
+
+function removerSelecionados() {
+    for (item of itensMenu) {
+        item.classList.remove("selected")
+    }
 }

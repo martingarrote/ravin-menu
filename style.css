@@ -7,8 +7,7 @@ body {
 
 header {
     background-color: rgb(35, 35, 35);
-    text-align: center;
-    padding: 10px;
+    padding: 10px 10px 10px 15px;
     user-select: none;
     color: rgb(200, 200, 200);
 }
@@ -31,13 +30,9 @@ nav ul {
     padding: 0;
 }
 
-nav ul li:hover {
-    cursor: pointer;
-    color: rgb(255, 255, 255)
-}
-
-nav p {
+nav p:not(:first-child) {
     font-weight: bold;
+    margin-bottom: 5px;
 }
 
 nav p:hover {
@@ -58,12 +53,24 @@ footer {
     position: relative;
 }
 
+.item-menu {
+    margin: 3px 0px 3px 0px;
+}
+
+.item-menu:hover {
+    cursor: pointer;
+    outline: 2px solid rgb(100, 100, 100);
+    background-color: rgb(100, 100, 100);
+    color: rgb(255, 255, 255);
+}
+
 .products {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     align-content: center;
     justify-content: center;
+    margin-top: 30px;
 }
 
 .product {
@@ -84,6 +91,7 @@ footer {
     border-radius: 10px;
     height: 160px;
     width: 160px;
+    object-fit: cover;
 }
 .product h3 {
     margin: 0;
@@ -94,8 +102,27 @@ footer {
 }
 
 .product input[type="number"] {
-    width: 60px;
+    width: 18px;
     padding: 5px;
     border-style: solid;
     border-radius: 5px;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+}
+
+.product input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+.selected {
+    outline: 2px solid rgb(100, 100, 100);
+    background-color: rgb(100, 100, 100);
+    color: rgb(255, 255, 255);
+}
+
+.hidden {
+    display: none;
 }

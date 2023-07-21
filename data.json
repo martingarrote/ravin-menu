@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "categoria": "comida",
+    "categoria": "comida-prato",
     "nome": "Bruschetta",
     "descricao": "Pão italiano torrado com tomate, manjericão e azeite de oliva",
     "valor": 12.50,
@@ -9,7 +9,7 @@
   },
   {
     "id": 2,
-    "categoria": "comida",
+    "categoria": "comida-pratos",
     "nome": "Carpaccio",
     "descricao": "Finas fatias de carne acompanhadas de molho de mostarda e alcaparras",
     "valor": 15.90,
@@ -17,7 +17,7 @@
   },
   {
     "id": 3,
-    "categoria": "bebida",
+    "categoria": "bebida-alcoolicas",
     "nome": "Vinho Tinto",
     "descricao": "Vinho encorpado, ideal para acompanhar carnes vermelhas",
     "valor": 50.00,
@@ -25,7 +25,7 @@
   },
   {
     "id": 4,
-    "categoria": "bebida",
+    "categoria": "bebida-alcoolicas",
     "nome": "Caipirinha",
     "descricao": "Cachaça, limão, açúcar e gelo, uma deliciosa bebida brasileira",
     "valor": 12.00,
@@ -46,5 +46,261 @@
     "descricao": "Mousse cremoso de chocolate belga com raspas de chocolate por cima",
     "valor": 8.90,
     "imagem": "img/mousse_chocolate.jpg"
+  },
+  {
+    "id": 7,
+    "categoria": "bebida-outras",
+    "nome": "Café Expresso",
+    "descricao": "Café expresso aromático e encorpado.",
+    "valor": 2.5,
+    "imagem": "img/cafe-expresso.jpg"
+  },
+  {
+    "id": 8,
+    "categoria": "comida-lanches",
+    "nome": "Sanduíche Vegetariano",
+    "descricao": "Opção saudável e deliciosa de sanduíche vegetariano.",
+    "valor": 9.0,
+    "imagem": "img/sanduiche-vegetariano.jpg"
+  },
+  {
+    "id": 9,
+    "categoria": "sobremesa",
+    "nome": "Torta de Maçã",
+    "descricao": "Torta de maçã caseira com uma pitada de canela.",
+    "valor": 7.0,
+    "imagem": "img/torta-maca.jpg"
+  },
+  {
+    "id": 10,
+    "categoria": "bebida-outras",
+    "nome": "Água Mineral",
+    "descricao": "Água mineral pura e refrescante.",
+    "valor": 1.5,
+    "imagem": "img/agua-mineral.jpg"
+  },
+  {
+    "id": 11,
+    "categoria": "comida-pratos",
+    "nome": "Salada Caesar",
+    "descricao": "Salada Caesar com molho especial.",
+    "valor": 12.0,
+    "imagem": "img/salada-caesar.jpg"
+  },
+  {
+    "id": 12,
+    "categoria": "sobremesa",
+    "nome": "Pudim de Leite",
+    "descricao": "Pudim de leite cremoso e irresistível.",
+    "valor": 5.5,
+    "imagem": "img/pudim-leite.jpg"
+  },
+  {
+    "id": 13,
+    "categoria": "bebida-outras",
+    "nome": "Chá Verde",
+    "descricao": "Chá verde revigorante com sabor suave.",
+    "valor": 3.0,
+    "imagem": "img/cha-verde.jpg"
+  },
+  {
+    "id": 14,
+    "categoria": "comida-pratos",
+    "nome": "Macarrão à Bolonhesa",
+    "descricao": "Macarrão com molho bolonhesa e queijo parmesão.",
+    "valor": 11.0,
+    "imagem": "img/macarrao-bolonhesa.jpg"
+  },
+  {
+    "id": 15,
+    "categoria": "sobremesa",
+    "nome": "Sundae",
+    "descricao": "Sundae com calda de chocolate e chantilly.",
+    "valor": 6.5,
+    "imagem": "img/sundae.jpg"
+  },
+  {
+    "id": 16,
+    "categoria": "bebida-sucos",
+    "nome": "Suco de Abacaxi",
+    "descricao": "Suco natural de abacaxi refrescante.",
+    "valor": 4.0,
+    "imagem": "img/suco-abacaxi.jpg"
+  },
+  {
+    "id": 17,
+    "categoria": "comida-pratos",
+    "nome": "Sopa de Legumes",
+    "descricao": "Sopa de legumes caseira e nutritiva.",
+    "valor": 8.0,
+    "imagem": "img/sopa-legumes.jpg"
+  },
+  {
+    "id": 18,
+    "categoria": "sobremesa",
+    "nome": "Tiramisu",
+    "descricao": "Tiramisu clássico com café e cacau.",
+    "valor": 7.5,
+    "imagem": "img/tiramisu.jpg"
+  },
+  {
+    "id": 19,
+    "categoria": "bebida-outras",
+    "nome": "Chá Gelado",
+    "descricao": "Refrescante chá gelado com limão e hortelã.",
+    "valor": 4.0,
+    "imagem": "img/cha-gelado.jpg"
+  },
+  {
+    "id": 20,
+    "categoria": "comida-lanches",
+    "nome": "Taco Mexicano",
+    "descricao": "Taco mexicano recheado com carne, queijo e pimenta.",
+    "valor": 7.0,
+    "imagem": "img/taco-mexicano.jpg"
+  },
+  {
+    "id": 21,
+    "categoria": "sobremesa",
+    "nome": "Cheesecake",
+    "descricao": "Cheesecake cremoso com cobertura de frutas vermelhas.",
+    "valor": 9.0,
+    "imagem": "img/cheesecake.jpg"
+  },
+  {
+    "id": 22,
+    "categoria": "bebida-outras",
+    "nome": "Água de Coco",
+    "descricao": "Água de coco natural e refrescante.",
+    "valor": 3.0,
+    "imagem": "img/agua-coco.jpg"
+  },
+  {
+    "id": 23,
+    "categoria": "comida-pratos",
+    "nome": "Lasanha de Frango",
+    "descricao": "Lasanha de frango com molho branco e queijo.",
+    "valor": 13.5,
+    "imagem": "img/lasanha-frango.jpg"
+  },
+  {
+    "id": 24,
+    "categoria": "sobremesa",
+    "nome": "Mousse de Maracujá",
+    "descricao": "Mousse de maracujá leve e saboroso.",
+    "valor": 5.0,
+    "imagem": "img/mousse-maracuja.jpg"
+  },
+  {
+    "id": 25,
+    "categoria": "bebida-outras",
+    "nome": "Cappuccino",
+    "descricao": "Cappuccino italiano com uma pitada de canela.",
+    "valor": 4.5,
+    "imagem": "img/cappuccino.jpg"
+  },
+  {
+    "id": 26,
+    "categoria": "comida-pratos",
+    "nome": "Salada de Quinoa",
+    "descricao": "Salada de quinoa com legumes e molho de ervas.",
+    "valor": 10.0,
+    "imagem": "img/salada-quinoa.jpg"
+  },
+  {
+    "id": 27,
+    "categoria": "sobremesa",
+    "nome": "Churros",
+    "descricao": "Churros recheados com doce de leite.",
+    "valor": 6.5,
+    "imagem": "img/churros.jpg"
+  },
+  {
+    "id": 28,
+    "categoria": "bebida-sucos",
+    "nome": "Suco de Melancia",
+    "descricao": "Suco refrescante de melancia.",
+    "valor": 4.0,
+    "imagem": "img/suco-melancia.jpg"
+  },
+  {
+    "id": 29,
+    "categoria": "comida-lanches",
+    "nome": "Burrito Mexicano",
+    "descricao": "Burrito mexicano com carne, arroz e feijão.",
+    "valor": 9.5,
+    "imagem": "img/burrito-mexicano.jpg"
+  },
+  {
+    "id": 30,
+    "categoria": "sobremesa",
+    "nome": "Pavê de Chocolate",
+    "descricao": "Pavê de chocolate com biscoitos e creme.",
+    "valor": 7.0,
+    "imagem": "img/pave-chocolate.jpg"
+  },
+  {
+    "id": 31,
+    "categoria": "bebida-refrigerantes",
+    "nome": "Refrigerante de Cola",
+    "descricao": "Delicioso refrigerante sabor cola.",
+    "valor": 3.5,
+    "imagem": "img/refrigerante-coca.jpg"
+  },
+  {
+    "id": 32,
+    "categoria": "comida-lanches",
+    "nome": "Hambúrguer Clássico",
+    "descricao": "Suculento hambúrguer com carne de qualidade.",
+    "valor": 10.0,
+    "imagem": "img/hamburguer-classico.jpg"
+  },
+  {
+    "id": 33,
+    "categoria": "sobremesa",
+    "nome": "Sorvete de Chocolate",
+    "descricao": "Delicioso sorvete de chocolate cremoso.",
+    "valor": 6.0,
+    "imagem": "img/sorvete-chocolate.jpg"
+  },
+  {
+    "id": 34,
+    "categoria": "bebida-sucos",
+    "nome": "Suco Natural de Laranja",
+    "descricao": "Refrescante suco natural de laranja.",
+    "valor": 4.5,
+    "imagem": "img/suco-laranja.jpg"
+  },
+  {
+    "id": 35,
+    "categoria": "comida-lanches",
+    "nome": "Pizza Margherita",
+    "descricao": "Deliciosa pizza margherita com ingredientes frescos.",
+    "valor": 18.0,
+    "imagem": "img/pizza-margherita.jpg"
+  },
+  {
+    "id": 36,
+    "categoria": "sobremesa",
+    "nome": "Brownie com Sorvete",
+    "descricao": "Brownie quentinho acompanhado de sorvete.",
+    "valor": 8.5,
+    "imagem": "img/brownie-sorvete.jpg"
+  },
+  {
+    "id": 37,
+    "categoria": "comida-petiscos-porcoes",
+    "nome": "Batata frita",
+    "descricao": "Batatas fritas crocantes e saborosas",
+    "valor": 11.5,
+    "imagem": "img/batata-frita.jpg"
+  },
+  {
+    "id": 38,
+    "categoria": "bebida-refrigerantes",
+    "nome": "Refrigerante de Guarana",
+    "descricao": "Delicioso refrigerante sabor guarana.",
+    "valor": 3.5,
+    "imagem": "img/refrigerante-guarana.jpg"
   }
 ]

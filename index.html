@@ -12,16 +12,26 @@
     </header>
     <div class="container">
         <nav>
-            <p>Categorias</p>
+            <p class="item-menu" id="all-products" onclick="filtrarItensMenu(this, 'todos')">Todos</p>
+            <p>Comida</p>
             <ul>
-                <li>Bebidas</li>
-                <li>Comidas</li>
-                <li>Sobremesas</li>
+                <li class="item-menu" onclick="filtrarItensMenu(this, 'comida-pratos')">Pratos</li>
+                <li class="item-menu" onclick="filtrarItensMenu(this, 'comida-lanches')">Lanches</li>
+                <li class="item-menu" onclick="filtrarItensMenu(this, 'comida-petiscos-porcoes')">Petiscos e porções</li>
+                <li class="item-menu" onclick="filtrarItensMenu(this, 'sobremesa')">Sobremesas</li>
             </ul>
+            <p>Bebidas</p>
+            <ul>
+                <li class="item-menu" onclick="filtrarItensMenu(this, 'bebida-sucos')">Sucos</li>
+                <li class="item-menu" onclick="filtrarItensMenu(this, 'bebida-refrigerantes')">Refrigerantes</li>
+                <li class="item-menu" onclick="filtrarItensMenu(this, 'bebida-alcoolicas')">Alcoólicas</li>
+                <li class="item-menu" onclick="filtrarItensMenu(this, 'bebida-outras')">Outras</li>
+            </ul>
+            
         </nav>
         <main>
             <section>
-                <h2 id="proucts-header">Produtos</h2>
+                <h2 id="proucts-header"></h2>
                 <div class="products"></div>
             </section>
         </main>
