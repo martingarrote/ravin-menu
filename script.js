@@ -20,8 +20,7 @@ function montarHtml(dados) {
               <img src="${item.imagem}">
               <h3>${item.nome}</h3>
               <p>${item.descricao}</p>
-              <input type="number" name="qtd-${item.id}" min="0">
-              <p><a class="btn" href="#" onclick='fazerPedido(${JSON.stringify(item)})'>Fazer pedido</a></p>
+              <button class="fazer-pedido" onclick='fazerPedido(${JSON.stringify(item)})'>Pedir</button>
           </div>
         `
         textHtml += produto
@@ -29,11 +28,8 @@ function montarHtml(dados) {
     products.innerHTML = textHtml
 }
 
-function selecionar(elemento) {
-    elemento.classList.add("selected")
-}
-
 function fazerPedido(item) {
+    console.log("oi")
     const itensByClassName = document.getElementsByName(`qtd-${item.id}`);
     const qtdItem = itensByClassName[0].value;
     item['quantidade'] = qtdItem;
@@ -44,6 +40,10 @@ function fazerPedido(item) {
 
     salvarUltimoPedido(item);
     salvarHistoricoPedidos(item);
+}
+
+function abrirPedido() {
+    
 }
 
 function salvarUltimoPedido(pedido) {
