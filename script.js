@@ -20,7 +20,7 @@ function montarHtml(dados) {
               <img src="${item.imagem}">
               <h3>${item.nome}</h3>
               <p>${item.descricao}</p>
-              <button class="fazer-pedido" onclick='fazerPedido(${JSON.stringify(item)})'>Pedir</button>
+              <button class="fazer-pedido" onclick='abrirModal(${JSON.stringify(item)})'>Pedir</button>
           </div>
         `
         textHtml += produto
@@ -28,18 +28,76 @@ function montarHtml(dados) {
     products.innerHTML = textHtml
 }
 
+function preencherModal(item) {
+    console.log(item)
+    const modal = document.querySelector(".modal-pedido");
+    let conteudoModal = `
+        <div class="modal-pedido">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>${item.nome}</h2>
+                    <img src="${item.imagem}">
+                </div>
+                <div class="modal-body">
+                    <p>Valor Total <br>R$ <span id="valorTotal">${item.valor}</span></p>
+                    <button class="quantidade-btn" onclick="diminuirQuantidade(${item.valor})">-</button>
+                    <span id="quantidade-pedido">1</span>
+                    <button class="quantidade-btn" onclick="aumentarQuantidade(${item.valor})">+</button>
+                </div>
+                <div class="modal-footer">
+                    <button class="pedido-btn" onclick="fazerPedido(${item})">Confirmar</button>
+                    <button class="pedido-btn" onclick="fecharModal()">Cancelar</button>
+                </div>
+            </div>
+        </div>      
+    `
+    modal.innerHTML = conteudoModal;
+}
+
+function diminuirQuantidade(preco) {
+    const qtdPedido = document.getElementById("quantidade-pedido")
+    const valorTotal = document.getElementById("valorTotal")
+    let quantidade = Number(qtdPedido.innerHTML)
+    if (quantidade > 1) {
+        quantidade--
+        qtdPedido.innerHTML = quantidade
+    }
+    valorTotal.innerHTML = quantidade * preco
+}
+
+function aumentarQuantidade(preco) {
+    const qtdPedido = document.getElementById("quantidade-pedido")
+    const valorTotal = document.getElementById("valorTotal")
+    let quantidade = Number(qtdPedido.innerHTML)
+    quantidade++
+    qtdPedido.innerHTML = quantidade
+    valorTotal.innerHTML = quantidade * preco
+}
+
+function abrirModal(item) {
+    preencherModal(item)
+
+    let modal = document.querySelector(".modal-pedido")
+    modal.classList.remove("hidden")
+}
+
+function fecharModal() {
+    const modal = document.querySelector(".modal-pedido")
+    modal.classList.add("hidden")
+}
+
 function fazerPedido(item) {
-    console.log("oi")
-    const itensByClassName = document.getElementsByName(`qtd-${item.id}`);
-    const qtdItem = itensByClassName[0].value;
-    item['quantidade'] = qtdItem;
+    console.log(item)
+    // const itensByClassName = document.getElementsByName(`qtd-${item.id}`);
+    // const qtdItem = itensByClassName[0].value;
+    // item['quantidade'] = qtdItem;
 
-    alert("Pedido feito!")
+    // alert("Pedido feito!")
 
-    //enviar pedido via web -> enviar como parâmetro
+    // //enviar pedido via web -> enviar como parâmetro
 
-    salvarUltimoPedido(item);
-    salvarHistoricoPedidos(item);
+    // salvarUltimoPedido(item);
+    // salvarHistoricoPedidos(item);
 }
 
 function abrirPedido() {

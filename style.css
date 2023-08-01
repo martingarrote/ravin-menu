@@ -21,7 +21,7 @@ nav {
     background-color: rgb(255, 50, 50);
     width: 180px;
     padding: 15px 15px 15px 15px;
-    color: rgb(200, 200, 200);
+    color: rgb(255, 255, 255);
 }
 
 nav ul {
@@ -138,4 +138,78 @@ footer {
 
 .hidden {
     display: none;
+}
+
+.modal-pedido {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5)
+}
+
+.modal-header {
+    text-align: center;
+}
+
+.modal-header h2 {
+    margin: 10px;
+}
+
+.modal-content {
+    background-color: rgb(245, 245, 245);
+    border-radius: 10px;
+    margin: 10% auto;
+    padding: 10px;
+    height: 380px;
+    width: 250px;
+    box-shadow: 0 5px 8px 0px rgba(0, 0, 0, 0.2), 0 7px 20px 0px rgba(0, 0, 0, 0.17);
+    animation-name: modalopen;
+    animation-duration: 1s;
+    text-align: center;
+}
+
+.modal-body p {
+    margin: 5px;
+}
+
+.pedido-btn {
+    background-color: rgb(255, 0, 0);
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    width: 100px;
+    border: none;
+    border-radius: 8px;
+    padding: 3px;
+    outline: 4px solid red;
+    margin: 6px 0px 6px 0px;
+}
+
+.pedido-btn:hover, .pedido-btn:active {
+    cursor: pointer;
+    outline: 2px solid red;
+}
+
+.modal-content img {
+    margin: 0;
+    border-radius: 10px;
+    height: 160px;
+    width: 160px;
+    object-fit: cover;
+}
+
+.modal-footer {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes modalopen {
+    from {opacity: 0}
+    to {opacity: 1;}
 }
