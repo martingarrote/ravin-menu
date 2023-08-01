@@ -6,9 +6,9 @@ body {
 }
 
 header {
+    user-select: none;
     background-color: rgb(35, 35, 35);
     padding: 10px 10px 10px 15px;
-    user-select: none;
     color: rgb(200, 200, 200);
 }
 
@@ -76,12 +76,15 @@ footer {
 
 .product {
     background-color: rgb(245, 245, 245);
-    height: 320px;
+    height: 340px;
     width: 230px;
     padding: 6px;
     border-radius: 10px;
     margin: 6px;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .product:hover {
@@ -89,7 +92,7 @@ footer {
 }
 
 .product img {
-    margin: 0;
+    margin: 0 auto 0 auto;
     border-radius: 10px;
     height: 160px;
     width: 160px;
@@ -102,7 +105,6 @@ footer {
 .product p {
     margin: 0;
     overflow: hidden;
-    
 }
 
 .product p:first {
@@ -113,15 +115,12 @@ footer {
     background-color: rgb(255, 0, 0);
     color: rgb(255, 255, 255);
     font-weight: bold;
-    position: absolute;
     width: 100px;
-    left: 50%;
-    bottom: 8%;
-    transform: translateX(-50%);
     border: none;
     border-radius: 10px;
     padding: 3px;
     outline: 4px solid red;
+    margin-bottom: 10px;
 }
 
 .fazer-pedido:hover, .fazer-pedido:active {
@@ -164,7 +163,6 @@ footer {
     border-radius: 10px;
     margin: 10% auto;
     padding: 10px;
-    height: 380px;
     width: 250px;
     box-shadow: 0 5px 8px 0px rgba(0, 0, 0, 0.2), 0 7px 20px 0px rgba(0, 0, 0, 0.17);
     animation-name: modalopen;
@@ -212,4 +210,18 @@ footer {
 @keyframes modalopen {
     from {opacity: 0}
     to {opacity: 1;}
+}
+
+.quantidade-btn {
+    border: none;
+    font-size: x-large;
+    color: red;
+    background: none;
+    border-radius: 10px;
+}
+
+.quantidade-btn:hover, .quantidade-btn:active {
+    cursor: pointer;
+    /* background-color: rgb(240, 240, 240); */
+    font-weight: 600;
 }

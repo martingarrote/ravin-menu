@@ -16,11 +16,16 @@ function montarHtml(dados) {
 
     for (item of dados) {
         let produto = `
-        <div class="product itens-menu}" data-category="${item.categoria}">
+        <div id="produto-${item.id}" class="product itens-menu}" data-category="${item.categoria}">
               <img src="${item.imagem}">
               <h3>${item.nome}</h3>
               <p>${item.descricao}</p>
-              <button class="fazer-pedido" onclick='abrirModal(${JSON.stringify(item)})'>Pedir</button>
+              <div>
+                <button class="quantidade-btn" onclick="diminuirQuantidade(${item.id})">&#x2212;</button>
+                <span id="qtd-${item.id}">1</span>
+                <button class="quantidade-btn" onclick="aumentarQuantidade(${item.id})">&#x2b;</button>
+              </div>
+              <button class="fazer-pedido" onclick='fazerPedido(${JSON.stringify(item)})'>Pedir</button>
           </div>
         `
         textHtml += produto
@@ -28,9 +33,25 @@ function montarHtml(dados) {
     products.innerHTML = textHtml
 }
 
-function preencherModal(item) {
-    console.log(item)
+function diminuirQuantidade(id) {
+    const qtdPedido = document.getElementById(`qtd-${id}`)
+    let quantidade = Number(qtdPedido.innerHTML)
+    if (quantidade > 1) {
+        quantidade--
+        qtdPedido.innerHTML = quantidade
+    }
+}
+
+function aumentarQuantidade(id) {
+    const qtdPedido = document.getElementById(`qtd-${id}`)
+    let quantidade = Number(qtdPedido.innerHTML)
+    quantidade++
+    qtdPedido.innerHTML = quantidade
+}
+
+function abrirModal(item) {
     const modal = document.querySelector(".modal-pedido");
+    const quantidade = document.getElementById(`qtd-${item.id}`).innerHTML
     let conteudoModal = `
         <div class="modal-pedido">
             <div class="modal-content">
@@ -39,45 +60,17 @@ function preencherModal(item) {
                     <img src="${item.imagem}">
                 </div>
                 <div class="modal-body">
-                    <p>Valor Total <br>R$ <span id="valorTotal">${item.valor}</span></p>
-                    <button class="quantidade-btn" onclick="diminuirQuantidade(${item.valor})">-</button>
-                    <span id="quantidade-pedido">1</span>
-                    <button class="quantidade-btn" onclick="aumentarQuantidade(${item.valor})">+</button>
+                    <p>Quantidade <br>${quantidade}</p>
+                    <p>Valor Total <br>R$ <span id="valorTotal">${item.valor * quantidade}</span></p>
                 </div>
                 <div class="modal-footer">
-                    <button class="pedido-btn" onclick="fazerPedido(${item})">Confirmar</button>
-                    <button class="pedido-btn" onclick="fecharModal()">Cancelar</button>
+                    <button class="pedido-btn confirma">Confirmar</button>
+                    <button class="pedido-btn cancela">Cancelar</button>
                 </div>
             </div>
         </div>      
     `
     modal.innerHTML = conteudoModal;
-}
-
-function diminuirQuantidade(preco) {
-    const qtdPedido = document.getElementById("quantidade-pedido")
-    const valorTotal = document.getElementById("valorTotal")
-    let quantidade = Number(qtdPedido.innerHTML)
-    if (quantidade > 1) {
-        quantidade--
-        qtdPedido.innerHTML = quantidade
-    }
-    valorTotal.innerHTML = quantidade * preco
-}
-
-function aumentarQuantidade(preco) {
-    const qtdPedido = document.getElementById("quantidade-pedido")
-    const valorTotal = document.getElementById("valorTotal")
-    let quantidade = Number(qtdPedido.innerHTML)
-    quantidade++
-    qtdPedido.innerHTML = quantidade
-    valorTotal.innerHTML = quantidade * preco
-}
-
-function abrirModal(item) {
-    preencherModal(item)
-
-    let modal = document.querySelector(".modal-pedido")
     modal.classList.remove("hidden")
 }
 
@@ -87,21 +80,28 @@ function fecharModal() {
 }
 
 function fazerPedido(item) {
-    console.log(item)
-    // const itensByClassName = document.getElementsByName(`qtd-${item.id}`);
-    // const qtdItem = itensByClassName[0].value;
-    // item['quantidade'] = qtdItem;
+    resultado = abrirModal(item)
+    document.querySelector(".pedido-btn.cancela").addEventListener("click", function() {
+        cancelarPedido(item.id)
+    })
+    document.querySelector(".pedido-btn.confirma").addEventListener("click", function() {
+        const quantidade = document.getElementById(`qtd-${item.id}`).innerHTML
+        item['quantidade'] = Number(quantidade)
 
-    // alert("Pedido feito!")
+        alert("Pedido realizado com sucesso!")
 
-    // //enviar pedido via web -> enviar como parâmetro
+        salvarUltimoPedido(item)
+        salvarHistoricoPedidos(item)
 
-    // salvarUltimoPedido(item);
-    // salvarHistoricoPedidos(item);
+        fecharModal()
+    })
 }
 
-function abrirPedido() {
-    
+function cancelarPedido(id) {
+    const qtdProduto = document.getElementById(`qtd-${id}`)
+    qtdProduto.innerHTML = "1"
+
+    fecharModal()
 }
 
 function salvarUltimoPedido(pedido) {
@@ -117,7 +117,6 @@ function salvarHistoricoPedidos(pedido) {
     historicoPedidos.itens.push(pedido);
     localStorage.setItem("orderHistory", JSON.stringify(historicoPedidos));
 }
-
 
 const itensMenu = document.querySelectorAll(".item-menu")
 itensMenu.forEach(item => {
