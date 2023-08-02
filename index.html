@@ -20,7 +20,29 @@
         </div>
     </header>
     <div class="container">
-        <div id="modal-pedido" class=" modal modal-pedido hidden"></div>
+        <div id="modal-pedido" class=" modal modal-pedido hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Bruschetta</h2>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <img src="img/bruschetta.jpg">
+                    </div>
+                    <div>
+                        <p>Quantidade</p>
+                        <button class="quantidade-btn" onclick="diminuirQuantidade(12.5)">−</button>
+                        <span id="quantidadePedido">1</span>
+                        <button class="quantidade-btn" onclick="aumentarQuantidade(12.5)">+</button>
+                        <p>Valor Total <br><span id="valorTotalPedido">12.50</span></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="pedido-btn cancela">Cancelar</button>
+                    <button class="pedido-btn confirma">Confirmar</button>
+                </div>
+            </div>
+        </div>
         <div id="modal-historico-pedidos" class="modal modal-historico-pedidos hidden">
             <div class="modal-content">
                 <div class="modal-header">

@@ -192,11 +192,26 @@ footer {
     border-radius: 10px;
     margin: 10% auto;
     padding: 10px;
-    width: 250px;
+    width: 400px;
     box-shadow: 0 5px 8px 0px rgba(0, 0, 0, 0.2), 0 7px 20px 0px rgba(0, 0, 0, 0.17);
     animation-name: modalOpen;
     animation-duration: 1s;
     text-align: center;
+}
+
+.modal-pedido .modal-body {
+    display: flex;
+    justify-content: center;
+}
+
+.modal-pedido .modal-body div:first-of-type {
+    width: 160px;
+    height: 160px;
+}
+
+.modal-pedido .modal-body div:last-of-type {
+    width: 160px;
+    height: 160px;
 }
 
 .modal-pedido .modal-body p {
@@ -237,11 +252,12 @@ footer {
 }
 
 .modal-pedido .modal-footer {
-    margin-top: 15px;
+    margin: 15px auto 0px auto;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
     align-items: center;
+    width: 300px;
 }
 
 .modal-historico-pedidos .modal-content {
@@ -294,7 +310,7 @@ footer {
 .historico-pedidos {
     background-color: rgb(230, 230, 230);
     border-collapse: collapse;
-    margin: auto;
+    margin: 0 auto 20px auto;
     width: 740px;
     border-radius: 10px 10px 10px 10px;
     overflow: hidden;

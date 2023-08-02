@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     pegarDados()
+    atualizarValorTotal()
 })
 
 function pegarDados() {
@@ -56,26 +57,29 @@ function aumentarQuantidade(valorProduto) {
 function abrirModalPedido(item) {
     const modal = document.getElementById("modal-pedido");
     let conteudoModal = `
-        <div class="modal-pedido">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>${item.nome}</h2>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>${item.nome}</h2>
+            </div>
+            <div class="modal-body">
+                <div>
                     <img src="${item.imagem}">
                 </div>
-                <div class="modal-body">
+                <div>
                     <p>Quantidade</p>
-                    <button class="quantidade-btn" onclick="diminuirQuantidade(${item.valor})">&#x2212;</button>
+                    <button class="quantidade-btn" onclick="diminuirQuantidade(${item.valor})">−</button>
                     <span id="quantidadePedido">1</span>
-                    <button class="quantidade-btn" onclick="aumentarQuantidade(${item.valor})">&#x2b;</button>
+                    <button class="quantidade-btn" onclick="aumentarQuantidade(${item.valor})">+</button>
                     <p>Valor Total <br><span id="valorTotalPedido">${(item.valor).toFixed(2)}</span></p>
                 </div>
-                <div class="modal-footer">
-                    <button class="pedido-btn confirma">Confirmar</button>
-                    <button class="pedido-btn cancela">Cancelar</button>
-                </div>
             </div>
-        </div>      
+            <div class="modal-footer">
+                <button class="pedido-btn cancela">Cancelar</button>
+                <button class="pedido-btn confirma">Confirmar</button>
+            </div>
+        </div>
     `
+
     modal.innerHTML = conteudoModal;
     modal.classList.remove("hidden")
 }
@@ -96,19 +100,18 @@ function fazerPedido(item) {
 
     document.querySelector(".pedido-btn.confirma").addEventListener("click", function() {
         const quantidade = document.getElementById("quantidadePedido")
-        const valorTotal = document.getElementById("valorTotal")
         const data = new Date()
         
         item['quantidade'] = Number(quantidade.innerHTML)
         item['horario'] = data.getHours() + ":" + data.getMinutes()
 
-        valorTotal.innerHTML = (Number(valorTotal.innerHTML) + item.valor * item.quantidade).toFixed(2)
         quantidade.innerHTML = 1
 
         alert("Pedido realizado com sucesso!")
 
         salvarUltimoPedido(item)
         salvarHistoricoPedidos(item)
+        atualizarValorTotal()
 
         fecharModal()
     })
@@ -208,5 +211,20 @@ function listarPedidos() {
         alert("Você não efetuou nenhum pedido ainda.")
     } else {
         abrirModalHistoricoPedidos(pedidos.itens)
+    }
+}
+
+function atualizarValorTotal() {
+    let pedidos = JSON.parse(localStorage.getItem("orderHistory"))
+    if (pedidos !== null) {
+        pedidos = pedidos.itens
+        const valorTotal = document.getElementById("valorTotal")
+        let novoValor = 0
+    
+        for (p of pedidos) {
+            novoValor += Number(p.valor * p.quantidade)
+        }
+    
+        valorTotal.innerHTML = novoValor.toFixed(2)
     }
 }
