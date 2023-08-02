@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function pegarDados() {
     const url = "data.json"
-    // const url = "http://localhost:5500/ravin/server-itens.php"
     fetch(url)
         .then((dados) => {return dados.json()})
         .then((data) => {montarHtml(data)})
@@ -85,8 +84,12 @@ function fazerPedido(item) {
         cancelarPedido(item.id)
     })
     document.querySelector(".pedido-btn.confirma").addEventListener("click", function() {
-        const quantidade = document.getElementById(`qtd-${item.id}`).innerHTML
-        item['quantidade'] = Number(quantidade)
+        const quantidade = document.getElementById(`qtd-${item.id}`)
+        const valorTotal = document.getElementById("valorTotal")
+        item['quantidade'] = Number(quantidade.innerHTML)
+
+        valorTotal.innerHTML = Number(valorTotal.innerHTML) + item.valor * item.quantidade
+        quantidade.innerHTML = 1
 
         alert("Pedido realizado com sucesso!")
 
