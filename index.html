@@ -15,32 +15,30 @@
             <ul>
                 <li id="numeroMesa">Mesa 1</li>
                 <li>R$ <span id="valorTotal">0.00</span></li>
-                <li id="verPedidos">Pedidos</li>
+                <li onclick="listarPedidos()">Pedidos</li>
             </ul>
         </div>
     </header>
     <div class="container">
         <div id="modal-pedido" class=" modal modal-pedido hidden"></div>
-        <div id="modal-historico-pedidos" class="modal modal-historico-pedidos">
+        <div id="modal-historico-pedidos" class="modal modal-historico-pedidos hidden">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2>Histórico de Pedidos</h2>
-                    <span class="closeBtn">&times;</span>
+                    <h2>Histórico de Pedidos<span onclick="fecharModal()" class="closeBtn">&times;</span></h2>
+                    
                 </div>
                 <div class="modal-body">
                     <table class="historico-pedidos">
-                        <tr>
-                            <th>Imagem</th>
-                            <th>Nome</th>
-                            <th>Quantidade</th>
-                            <th>Valor</th>
-                        </tr>
-                        <tr>
-                            <td>imagem aqui</td>
-                            <td>produto</td>
-                            <td>10</td>
-                            <td>52.5</td>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Quantidade</th>
+                                <th>Horário</th>
+                                <th>Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historico-pedidos">
+                        </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">

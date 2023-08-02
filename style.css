@@ -36,6 +36,10 @@ header li:hover {
     color: white;
 }
 
+header li:last-of-type:hover {
+    cursor: pointer;
+}
+
 .container {
     display: flex;
     height: calc(100vh - 63px - 50px);
@@ -102,7 +106,7 @@ footer {
     background-color: rgb(245, 245, 245);
     height: 340px;
     width: 230px;
-    padding: 6px;
+    padding: 10px 6px 10px 6px;
     border-radius: 10px;
     margin: 6px;
     display: flex;
@@ -131,8 +135,9 @@ footer {
     overflow: hidden;
 }
 
-.product p:first {
-    height: 500px;
+.product p:last-of-type {
+    color: #00a650;
+    font-weight: bold;
 }
 
 .fazer-pedido {
@@ -198,6 +203,14 @@ footer {
     margin: 5px;
 }
 
+.modal-pedido .modal-body p:last-of-type span {
+    color: #00a650;
+}
+
+.modal-pedido .modal-body p:last-of-type span::before {
+    content: "R$ ";
+}
+
 .pedido-btn {
     background-color: rgb(255, 0, 0);
     color: rgb(255, 255, 255);
@@ -243,17 +256,22 @@ footer {
     text-align: center;
 }
 
+.modal-historico-pedidos .modal-header {
+    text-align: left;
+    padding: 0px 50px 0px 50px;
+}
+
 .closeBtn {
     color: #4e4e4e;
     float: right;
     font-size: 30px; 
+    height: 32px;
 }
 
 .closeBtn:hover, .closeBtn:focus {
     color: #ccc;
     text-decoration: none;
     cursor: pointer;
-
 }
 
 @keyframes modalOpen {
@@ -274,14 +292,33 @@ footer {
 }
 
 .historico-pedidos {
+    background-color: rgb(230, 230, 230);
+    border-collapse: collapse;
     margin: auto;
     width: 740px;
+    border-radius: 10px 10px 10px 10px;
+    overflow: hidden;
+    cursor: default;
+}
+
+.historico-pedidos thead tr {
+    background-color: rgb(200, 200, 200);
 }
 
 .historico-pedidos tr {
-    /* background-color: rgb(240, 240, 240); */
+    height: 30px;
 }
 
-.historico-pedidos td {
-    height: 30px;
+.historico-pedidos tbody tr:not(:last-of-type) {
+    border-bottom: 1px solid rgb(255, 255, 255)
+}
+
+.historico-pedidos tbody tr:hover {
+    background-color: rgb(235, 235, 235);
+}
+
+.historico-pedidos tbody tr:last-of-type {
+    text-transform: uppercase;
+    font-weight: bold;
+    background-color: rgb(215, 215, 215);
 }

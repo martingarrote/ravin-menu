@@ -15,15 +15,11 @@ function montarHtml(dados) {
 
     for (item of dados) {
         let produto = `
-        <div id="produto-${item.id}" class="product itens-menu}" data-category="${item.categoria}">
+        <div id="produto-${item.id}" class="product itens-menu" data-category="${item.categoria}">
               <img src="${item.imagem}">
               <h3>${item.nome}</h3>
               <p>${item.descricao}</p>
-              <div>
-                <button class="quantidade-btn" onclick="diminuirQuantidade(${item.id})">&#x2212;</button>
-                <span id="qtd-${item.id}">1</span>
-                <button class="quantidade-btn" onclick="aumentarQuantidade(${item.id})">&#x2b;</button>
-              </div>
+              <p>R$ ${item.valor.toFixed(2)}</p>
               <button class="fazer-pedido" onclick='fazerPedido(${JSON.stringify(item)})'>Pedir</button>
           </div>
         `
@@ -32,25 +28,33 @@ function montarHtml(dados) {
     products.innerHTML = textHtml
 }
 
-function diminuirQuantidade(id) {
-    const qtdPedido = document.getElementById(`qtd-${id}`)
-    let quantidade = Number(qtdPedido.innerHTML)
+function diminuirQuantidade(valorProduto) {
+    const quantidadeProduto = document.getElementById("quantidadePedido")
+    const valorTotalPedido = document.getElementById("valorTotalPedido")
+    let quantidade = Number(quantidadeProduto.innerHTML)
+
     if (quantidade > 1) {
         quantidade--
-        qtdPedido.innerHTML = quantidade
+        quantidadeProduto.innerHTML = quantidade
+
+        valorTotalPedido.innerHTML = (valorProduto * quantidade).toFixed(2)
     }
 }
 
-function aumentarQuantidade(id) {
-    const qtdPedido = document.getElementById(`qtd-${id}`)
-    let quantidade = Number(qtdPedido.innerHTML)
+function aumentarQuantidade(valorProduto) {
+    const quantidadePedido = document.getElementById("quantidadePedido")
+    const valorTotalPedido = document.getElementById("valorTotalPedido")
+    let quantidade = Number(quantidadePedido.innerHTML)
+
     quantidade++
-    qtdPedido.innerHTML = quantidade
+    quantidadePedido.innerHTML = quantidade
+
+    valorTotalPedido.innerHTML = (valorProduto * quantidade).toFixed(2)
 }
+
 
 function abrirModalPedido(item) {
     const modal = document.getElementById("modal-pedido");
-    const quantidade = document.getElementById(`qtd-${item.id}`).innerHTML
     let conteudoModal = `
         <div class="modal-pedido">
             <div class="modal-content">
@@ -59,8 +63,11 @@ function abrirModalPedido(item) {
                     <img src="${item.imagem}">
                 </div>
                 <div class="modal-body">
-                    <p>Quantidade <br>${quantidade}</p>
-                    <p>Valor Total <br>R$ <span id="valorTotal">${item.valor * quantidade}</span></p>
+                    <p>Quantidade</p>
+                    <button class="quantidade-btn" onclick="diminuirQuantidade(${item.valor})">&#x2212;</button>
+                    <span id="quantidadePedido">1</span>
+                    <button class="quantidade-btn" onclick="aumentarQuantidade(${item.valor})">&#x2b;</button>
+                    <p>Valor Total <br><span id="valorTotalPedido">${(item.valor).toFixed(2)}</span></p>
                 </div>
                 <div class="modal-footer">
                     <button class="pedido-btn confirma">Confirmar</button>
@@ -82,15 +89,20 @@ function fecharModal() {
 
 function fazerPedido(item) {
     resultado = abrirModalPedido(item)
+
     document.querySelector(".pedido-btn.cancela").addEventListener("click", function() {
         cancelarPedido(item.id)
     })
-    document.querySelector(".pedido-btn.confirma").addEventListener("click", function() {
-        const quantidade = document.getElementById(`qtd-${item.id}`)
-        const valorTotal = document.getElementById("valorTotal")
-        item['quantidade'] = Number(quantidade.innerHTML)
 
-        valorTotal.innerHTML = Number(valorTotal.innerHTML) + item.valor * item.quantidade
+    document.querySelector(".pedido-btn.confirma").addEventListener("click", function() {
+        const quantidade = document.getElementById("quantidadePedido")
+        const valorTotal = document.getElementById("valorTotal")
+        const data = new Date()
+        
+        item['quantidade'] = Number(quantidade.innerHTML)
+        item['horario'] = data.getHours() + ":" + data.getMinutes()
+
+        valorTotal.innerHTML = (Number(valorTotal.innerHTML) + item.valor * item.quantidade).toFixed(2)
         quantidade.innerHTML = 1
 
         alert("Pedido realizado com sucesso!")
@@ -103,8 +115,8 @@ function fazerPedido(item) {
 }
 
 function cancelarPedido(id) {
-    const qtdProduto = document.getElementById(`qtd-${id}`)
-    qtdProduto.innerHTML = "1"
+    const quantidadePedido = document.getElementById("quantidadePedido")
+    quantidadePedido.innerHTML = "1"
 
     fecharModal()
 }
@@ -160,13 +172,41 @@ function removerSelecionados() {
 }
 
 function abrirModalHistoricoPedidos(pedidos) {
-    
+    const modal = document.getElementById("modal-historico-pedidos")
+    const campoPedidos = document.getElementById("historico-pedidos")
+    let listaHistoricoPedidos = ""
+    let total = 0
+
+    for (p of pedidos) {
+        total += p.valor * p.quantidade
+        listaHistoricoPedidos += `
+        <tr>
+            <td>${p.nome}</td>
+            <td>${p.quantidade}</td>
+            <td>${p.horario}</td>
+            <td>R$ ${(p.valor * p.quantidade).toFixed(2)}</td>
+        </tr>
+        `
+    }
+
+    listaHistoricoPedidos += `
+    <tr>
+        <td>TOTAL</td>
+        <td></td>
+        <td></td>
+        <td>R$ ${(total).toFixed(2)}</td>
+    </tr>
+    `
+    campoPedidos.innerHTML = listaHistoricoPedidos
+    modal.classList.remove("hidden")
 }
 
 function listarPedidos() {
-    const pedidos = JSON.parse(localStorage.getItem("orderHistory")).itens
+    const pedidos = JSON.parse(localStorage.getItem("orderHistory"))
 
-    for (p of pedidos) {
-        console.log(p)
+    if (pedidos === null) {
+        alert("Você não efetuou nenhum pedido ainda.")
+    } else {
+        abrirModalHistoricoPedidos(pedidos.itens)
     }
 }
