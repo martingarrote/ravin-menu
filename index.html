@@ -8,10 +8,46 @@
 </head>
 <body>
     <header>
-        <h1 style="margin: 0px;">Ravin</h1>
+        <div>
+            <h1 style="margin: 0px;">Ravin</h1>
+        </div>
+        <div>
+            <ul>
+                <li id="numeroMesa">Mesa 1</li>
+                <li>R$ <span id="valorTotal">0.00</span></li>
+                <li id="verPedidos">Pedidos</li>
+            </ul>
+        </div>
     </header>
     <div class="container">
-        <div class="modal-pedido hidden"></div>
+        <div id="modal-pedido" class=" modal modal-pedido hidden"></div>
+        <div id="modal-historico-pedidos" class="modal modal-historico-pedidos">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Histórico de Pedidos</h2>
+                    <span class="closeBtn">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <table class="historico-pedidos">
+                        <tr>
+                            <th>Imagem</th>
+                            <th>Nome</th>
+                            <th>Quantidade</th>
+                            <th>Valor</th>
+                        </tr>
+                        <tr>
+                            <td>imagem aqui</td>
+                            <td>produto</td>
+                            <td>10</td>
+                            <td>52.5</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+        <div class="modal-historico-pedidos hidden"></div>
         <nav>
             <p class="item-menu selected" id="all-products" onclick="filtrarItensMenu(this, 'todos')">Todos</p>
             <p>Comida</p>

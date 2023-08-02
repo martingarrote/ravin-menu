@@ -10,6 +10,30 @@ header {
     background-color: rgb(35, 35, 35);
     padding: 10px 10px 10px 15px;
     color: rgb(200, 200, 200);
+    display: flex;
+}
+
+header div {
+    height: 43px !important;
+}
+
+header div:last-child {
+    margin-left: auto;
+    display: flex;
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+    padding-left: 0;
+}
+
+header ul li {
+    margin: 0 20px 0 20px;
+}
+
+header li:hover {
+    color: white;
 }
 
 .container {
@@ -139,7 +163,7 @@ footer {
     display: none;
 }
 
-.modal-pedido {
+.modal {
     position: fixed;
     z-index: 1;
     left: 0;
@@ -150,27 +174,27 @@ footer {
     background-color: rgba(0, 0, 0, 0.5)
 }
 
-.modal-header {
+.modal-pedido .modal-header {
     text-align: center;
 }
 
-.modal-header h2 {
+.modal-pedido .modal-header h2 {
     margin: 10px;
 }
 
-.modal-content {
+.modal-pedido .modal-content {
     background-color: rgb(245, 245, 245);
     border-radius: 10px;
     margin: 10% auto;
     padding: 10px;
     width: 250px;
     box-shadow: 0 5px 8px 0px rgba(0, 0, 0, 0.2), 0 7px 20px 0px rgba(0, 0, 0, 0.17);
-    animation-name: modalopen;
+    animation-name: modalOpen;
     animation-duration: 1s;
     text-align: center;
 }
 
-.modal-body p {
+.modal-pedido .modal-body p {
     margin: 5px;
 }
 
@@ -191,7 +215,7 @@ footer {
     outline: 2px solid red;
 }
 
-.modal-content img {
+.modal-pedido .modal-content img {
     margin: 0;
     border-radius: 10px;
     height: 160px;
@@ -199,7 +223,7 @@ footer {
     object-fit: cover;
 }
 
-.modal-footer {
+.modal-pedido .modal-footer {
     margin-top: 15px;
     display: flex;
     flex-direction: column;
@@ -207,7 +231,32 @@ footer {
     align-items: center;
 }
 
-@keyframes modalopen {
+.modal-historico-pedidos .modal-content {
+    background-color: rgb(245, 245, 245);
+    border-radius: 10px;
+    margin: 10% auto;
+    padding: 10px;
+    width: 800px;
+    box-shadow: 0 5px 8px 0px rgba(0, 0, 0, 0.2), 0 7px 20px 0px rgba(0, 0, 0, 0.17);
+    animation-name: modalOpen;
+    animation-duration: 1s;
+    text-align: center;
+}
+
+.closeBtn {
+    color: #4e4e4e;
+    float: right;
+    font-size: 30px; 
+}
+
+.closeBtn:hover, .closeBtn:focus {
+    color: #ccc;
+    text-decoration: none;
+    cursor: pointer;
+
+}
+
+@keyframes modalOpen {
     from {opacity: 0}
     to {opacity: 1;}
 }
@@ -222,6 +271,17 @@ footer {
 
 .quantidade-btn:hover, .quantidade-btn:active {
     cursor: pointer;
+}
+
+.historico-pedidos {
+    margin: auto;
+    width: 740px;
+}
+
+.historico-pedidos tr {
     /* background-color: rgb(240, 240, 240); */
-    font-weight: 600;
+}
+
+.historico-pedidos td {
+    height: 30px;
 }

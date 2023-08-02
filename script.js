@@ -48,8 +48,8 @@ function aumentarQuantidade(id) {
     qtdPedido.innerHTML = quantidade
 }
 
-function abrirModal(item) {
-    const modal = document.querySelector(".modal-pedido");
+function abrirModalPedido(item) {
+    const modal = document.getElementById("modal-pedido");
     const quantidade = document.getElementById(`qtd-${item.id}`).innerHTML
     let conteudoModal = `
         <div class="modal-pedido">
@@ -74,12 +74,14 @@ function abrirModal(item) {
 }
 
 function fecharModal() {
-    const modal = document.querySelector(".modal-pedido")
-    modal.classList.add("hidden")
+    const modal = document.getElementsByClassName("modal");
+    for (m of modal) {
+        m.classList.add("hidden")
+    }
 }
 
 function fazerPedido(item) {
-    resultado = abrirModal(item)
+    resultado = abrirModalPedido(item)
     document.querySelector(".pedido-btn.cancela").addEventListener("click", function() {
         cancelarPedido(item.id)
     })
@@ -154,5 +156,17 @@ function removerSelecionado(item) {
 function removerSelecionados() {
     for (item of itensMenu) {
         item.classList.remove("selected")
+    }
+}
+
+function abrirModalHistoricoPedidos(pedidos) {
+    
+}
+
+function listarPedidos() {
+    const pedidos = JSON.parse(localStorage.getItem("orderHistory")).itens
+
+    for (p of pedidos) {
+        console.log(p)
     }
 }
