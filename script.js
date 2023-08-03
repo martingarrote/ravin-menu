@@ -94,11 +94,11 @@ function fecharModal() {
 function fazerPedido(item) {
     resultado = abrirModalPedido(item)
 
-    document.querySelector(".pedido-btn.cancela").addEventListener("click", function() {
+    document.querySelector(".pedido-btn.cancela").addEventListener("click", () => {
         cancelarPedido(item.id)
     })
 
-    document.querySelector(".pedido-btn.confirma").addEventListener("click", function() {
+    document.querySelector(".pedido-btn.confirma").addEventListener("click", () => {
         const quantidade = document.getElementById("quantidadePedido")
         const data = new Date()
         
@@ -107,13 +107,12 @@ function fazerPedido(item) {
 
         quantidade.innerHTML = 1
 
-        alert("Pedido realizado com sucesso!")
-
         salvarUltimoPedido(item)
         salvarHistoricoPedidos(item)
         atualizarValorTotal()
-
+        
         fecharModal()
+        abrirModalMensagem("Pedido realizado com sucesso!", 5)
     })
 }
 
@@ -208,7 +207,7 @@ function listarPedidos() {
     const pedidos = JSON.parse(localStorage.getItem("orderHistory"))
 
     if (pedidos === null) {
-        alert("Você não efetuou nenhum pedido ainda.")
+        abrirModalMensagem("Você não efetuou nenhum pedido ainda.", 6)
     } else {
         abrirModalHistoricoPedidos(pedidos.itens)
     }
@@ -229,14 +228,25 @@ function atualizarValorTotal() {
     }
 }
 
-function abrirModalMensagem(mensagem) {
+function abrirModalMensagem(mensagem, tempo) {
     const modal = document.getElementById("modal-mensagem")
+    const barra = document.getElementsByClassName("barra")[0]
     const localMensagem = document.getElementById("mensagem")
-
-    modal.classList.remove("hidden")
+    
+    barra.style.animation = `desaparecer ${tempo}s linear forwards`
     localMensagem.innerHTML = mensagem
 
-    setTimeout(() => {
-        fecharModal()
-    }, 9000);
+    if (modal.classList.contains("hidden")) {
+        modal.classList.remove("hidden")
+    } else {
+        modal.classList.add("hidden")
+        setTimeout(() => {
+            barra.style.animation = `desaparecer ${tempo}s linear forwards`
+            modal.classList.remove("hidden")
+        }, 100);
+    }
+    
+    barra.addEventListener("animationend", () => {
+        modal.classList.add("hidden")
+    })
 }
