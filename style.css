@@ -135,6 +135,10 @@ footer {
     overflow: hidden;
 }
 
+.product p:first-of-type {
+    height: 63px;
+}
+
 .product p:last-of-type {
     color: #00a650;
     font-weight: bold;
@@ -337,4 +341,46 @@ footer {
     text-transform: uppercase;
     font-weight: bold;
     background-color: rgb(215, 215, 215);
+}
+
+.modal-mensagem {
+    background-color: rgba(0, 0, 0, 0.0) !important;
+}
+
+.modal-mensagem .modal-content {
+    background-color: rgb(245, 245, 245);
+    border-radius: 10px;
+    margin: 10px auto;
+    padding: 4px 10px 10px 10px;
+    width: 300px;
+    height: 100px;
+    box-shadow: 0 5px 8px 0px rgba(0, 0, 0, 0.2), 0 7px 20px 0px rgba(0, 0, 0, 0.17);
+    animation-name: modalOpen;
+    animation-duration: 1s;
+    text-align: center;
+}
+
+.modal-mensagem .modal-header hr {
+    width: 0%;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 10px;
+    color: rgb(168, 255, 168);
+    margin-left: 0;
+    animation-name: diminuiBarra;
+    animation-duration: 10s;
+}
+
+.modal-mensagem .modal-header h3 {
+    margin: 0px;
+}
+
+.modal-mensagem .modal-body p {
+    font-weight: 600;
+    margin: 10px;
+}
+
+@keyframes diminuiBarra {
+    from {width: 300px;}
+    to {width: 0px;}
 }

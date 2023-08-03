@@ -228,3 +228,15 @@ function atualizarValorTotal() {
         valorTotal.innerHTML = novoValor.toFixed(2)
     }
 }
+
+function abrirModalMensagem(mensagem) {
+    const modal = document.getElementById("modal-mensagem")
+    const localMensagem = document.getElementById("mensagem")
+
+    modal.classList.remove("hidden")
+    localMensagem.innerHTML = mensagem
+
+    setTimeout(() => {
+        fecharModal()
+    }, 9000);
+}
