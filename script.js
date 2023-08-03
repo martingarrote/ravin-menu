@@ -250,3 +250,12 @@ function abrirModalMensagem(mensagem, tempo) {
         modal.classList.add("hidden")
     })
 }
+
+const modalList = document.querySelectorAll(".modal");
+modalList.forEach((modal) => {
+    modal.addEventListener("click", (e) => {
+        if (e.target.classList.contains("modal")) {
+            fecharModal()
+        }
+    })
+})
