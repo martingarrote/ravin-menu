@@ -103,7 +103,7 @@ function fazerPedido(item) {
         const data = new Date()
         
         item['quantidade'] = Number(quantidade.innerHTML)
-        item['horario'] = data.getHours() + ":" + data.getMinutes()
+        item['horario'] = data.getHours().toString().padStart(2, '0'); + ":" + data.getMinutes().toString().padStart(2, '0');
 
         quantidade.innerHTML = 1
 
