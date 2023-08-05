@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     pegarDados()
     atualizarValorTotal()
+    atualizarStatusUltimoPedido()
 })
 
 function pegarDados() {
@@ -95,7 +96,7 @@ function fazerPedido(item) {
     resultado = abrirModalPedido(item)
 
     document.querySelector(".pedido-btn.cancela").addEventListener("click", () => {
-        cancelarPedido(item.id)
+        interromperPedido(item.id)
     })
 
     document.querySelector(".pedido-btn.confirma").addEventListener("click", () => {
@@ -104,19 +105,22 @@ function fazerPedido(item) {
         
         item['quantidade'] = Number(quantidade.innerHTML)
         item['horario'] = data.getHours().toString().padStart(2, '0') + ":" + data.getMinutes().toString().padStart(2, '0')
+        item['status'] = "pendente"
 
         quantidade.innerHTML = 1
 
         salvarUltimoPedido(item)
         salvarHistoricoPedidos(item)
         atualizarValorTotal()
+
+        atualizarStatusUltimoPedido()
         
         fecharModal()
         abrirModalMensagem("Pedido realizado com sucesso!", 5)
     })
 }
 
-function cancelarPedido(id) {
+function interromperPedido() {
     const quantidadePedido = document.getElementById("quantidadePedido")
     quantidadePedido.innerHTML = "1"
 
@@ -182,18 +186,20 @@ function abrirModalHistoricoPedidos(pedidos) {
     for (p of pedidos) {
         total += p.valor * p.quantidade
         listaHistoricoPedidos += `
-        <tr>
+        <tr id="pedido-${pedidos.indexOf(p)}" onclick="verPedido(this)">
             <td>${p.nome}</td>
             <td>${p.quantidade}</td>
             <td>${p.horario}</td>
+            <td><div class="cell ${p.status}">${p.status}</div></td>
             <td>R$ ${(p.valor * p.quantidade).toFixed(2)}</td>
-        </tr>
-        `
+            </tr>
+            `
     }
 
     listaHistoricoPedidos += `
     <tr>
         <td>TOTAL</td>
+        <td></td>
         <td></td>
         <td></td>
         <td>R$ ${(total).toFixed(2)}</td>
@@ -259,3 +265,42 @@ modalList.forEach((modal) => {
         }
     })
 })
+
+function trocarStatus() {
+    const statusUltimoPedido = JSON.parse(localStorage.getItem("lastOrder")).status
+
+    const statusBall = document.getElementById("status-ball")
+    const statusPedido = document.getElementById("status-pedido")
+
+    switch (statusUltimoPedido.toUpperCase()) {
+        case "ENTREGUE":
+            statusBall.classList.remove(statusBall.classList[1])
+            statusBall.classList.add("entregue")
+            statusPedido.innerHTML = "Entregue"
+            break;
+    
+        case "PENDENTE":
+            statusBall.classList.remove(statusBall.classList[1])
+            statusBall.classList.add("pendente")
+            statusPedido.innerHTML = "Pendente"
+            break;
+    
+        case "CANCELADO":
+            statusBall.classList.remove(statusBall.classList[1])
+            statusBall.classList.add("cancelado")
+            statusPedido.innerHTML = "Cancelado"
+            break;
+    }    
+}
+
+function atualizarStatusUltimoPedido() {
+    const ultimoPedido = JSON.parse(localStorage.getItem("lastOrder"))
+    const statusUltimoPedido = document.getElementsByClassName("ultimo-pedido")[0]
+    if (ultimoPedido === null || ultimoPedido === undefined) {
+        statusUltimoPedido.classList.add("hidden")
+    } else {
+        console.log(statusUltimoPedido.classList)
+        statusUltimoPedido.classList.remove("hidden")
+        trocarStatus()
+    }
+}

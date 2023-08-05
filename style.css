@@ -8,7 +8,7 @@ body {
 header {
     user-select: none;
     background-color: rgb(35, 35, 35);
-    padding: 10px 10px 10px 15px;
+    padding: 15px 10px 15px 15px;
     color: rgb(200, 200, 200);
     display: flex;
 }
@@ -25,7 +25,10 @@ header div:last-child {
 header ul {
     list-style: none;
     display: flex;
+    margin: 0;
     padding-left: 0;
+    height: 100%;
+    align-items: center;
 }
 
 header ul li {
@@ -40,9 +43,51 @@ header li:last-of-type:hover {
     cursor: pointer;
 }
 
+.ultimo-pedido::before {
+    content: "Último pedido";
+    text-align: center;
+}
+
+.ultimo-pedido:hover {
+    color: rgb(200, 200, 200);
+}
+
+.ultimo-pedido span:hover {
+    color: white;
+}
+
+.cell {
+    text-align: center;
+    border-radius: 20px;
+    height: 25px;
+    width: 100px;
+    margin: auto;
+    text-transform: capitalize;
+}
+
+.ball {
+    border-radius: 50%;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0px 5px 0px 5px;
+}
+
+.entregue {
+    background-color: rgb(125, 255, 125);
+}
+
+.pendente {
+    background-color: rgb(100, 180, 255);
+}
+
+.cancelado {
+    background-color: rgb(255, 80, 80);
+}
+
 .container {
     display: flex;
-    height: calc(100vh - 63px - 50px);
+    height: calc(100vh - 73px - 50px);
 }
 
 nav {
